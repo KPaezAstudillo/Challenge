@@ -1,0 +1,79 @@
+/* banner.module.css */
+
+.bannerContainer {
+  display: flex;
+  align-items: center;
+  background-color: rgb(0, 0, 105);
+  color: white;
+  overflow: hidden;
+  height: 80vh; /* Use viewport height (80% of the viewport height) */
+}
+
+.textContainer {
+  flex: 1;
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.textContainer h1 {
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.textContainer p {
+  font-size: 1.2rem;
+  color: #9a9a9a;
+}
+
+.imageContainer {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  height: 100%; /* Set the image container's height to match text container */
+}
+
+.imageContainer img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%; /* Ensure the image fills the entire container */
+}
+
+.serviceContainer {
+  display: flex;
+  margin-top: 30px;
+}
+
+.service {
+  flex: 1;
+  padding: 10px;
+}
+
+.service img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.service p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.service:hover {
+  transform: scale(1.2); /* Enlarge the image on hover */
+}
+
+.imageContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to right, rgb(0, 0, 105), rgba(255, 255, 255, 0));
+  z-index: 2;
+  transition: opacity 0.5s;
+  opacity: 1;
+}
