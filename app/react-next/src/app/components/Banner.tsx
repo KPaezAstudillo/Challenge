@@ -1,22 +1,25 @@
 import React from "react";
-import styles from "../styles/banner.module.css";
 import Image from "next/image";
-import bannerImg from "../images/banner.jpg";
 import petSittingImg from "../images/petsitting.jpg";
 import petWalkingImg from "../images/petwalking.jpg";
+import bannerImg from "../images/banner.jpg";
 import Link from "next/link";
+import styles from "../styles/banner.module.css";
 
 const Banner = () => {
   return (
-    <div className={styles.bannerContainer}>
-      <div className={styles.textContainer}>
-        <h1>Of course!</h1>
-        <p>We'll do it for you</p>
+    <div
+      className={`flex items-center bg-gray-200 text-white overflow-hidden h-80vh ${styles.bannerContainer}`}
+    >
+      <div className="flex-1 p-10 relative z-10">
+        <h1 className="mb-2 text-3xl font-bold text-dark">Of course!</h1>
+        <p className="text-lg text-dark">We&apos;ll do it for you</p>
 
-        <div className={styles.serviceContainer}>
-          <div className={styles.service}>
+        <div className="flex mt-5 gap-1 flex-col md:flex-row md:gap-6">
+          <div className={`flex-1 ${styles.service}`}>
             <Link href="/petsitting">
               <Image
+                className="rounded-md"
                 src={petSittingImg}
                 alt="Pet Sitting"
                 width={200}
@@ -24,12 +27,15 @@ const Banner = () => {
                 objectFit="cover"
               />
             </Link>
-            <p>Pet Sitting Service</p>
+            <p className="mt-2 text-lg font-semibold text-dark">
+              Pet Sitting Service
+            </p>
           </div>
 
-          <div className={styles.service}>
+          <div className={`flex-1 ${styles.service} mt-4 md:mt-0`}>
             <Link href="/petwalking">
               <Image
+                className="rounded-md"
                 src={petWalkingImg}
                 alt="Pet Walking"
                 width={200}
@@ -37,7 +43,9 @@ const Banner = () => {
                 objectFit="cover"
               />
             </Link>
-            <p>Pet Walking Service</p>
+            <p className="mt-2 text-lg font-semibold text-dark">
+              Pet Walking Service
+            </p>
           </div>
         </div>
       </div>

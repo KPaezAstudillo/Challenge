@@ -1,13 +1,30 @@
-import RootLayout from "@/app/layout";
 import React from "react";
 import Image from "next/image";
-import petWalkingImage from "../app/images/bookpetwalking.jpg"; // Replace with the actual path to your image
+import petWalkingImage from "../app/images/bookpetwalking.jpg";
+import { FaShoppingCart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/app/store/nextSlice";
+import { useRouter } from "next/router";
+
+interface AddToCartPayload {
+  serviceName: string;
+  price: number;
+}
 
 const PetWalking = () => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+
+  const handleAddToCart = () => {
+    const service: AddToCartPayload = { serviceName: "Pet Walking", price: 10 };
+    dispatch(addToCart(service));
+    router.push("/cart");
+  };
+
   return (
-    <RootLayout>
-      <div className="pet-walking-container">
-        <div className="image-container">
+    <>
+      <div className="flex flex-col md:flex-row justify-between items-center p-10">
+        <div className="image-container flex-1 mb-5 md:mb-0">
           <Image
             src={petWalkingImage}
             alt="Pet Walking"
@@ -16,76 +33,48 @@ const PetWalking = () => {
             objectFit="cover"
           />
         </div>
-        <div className="info-container">
-          <h2>Here's what you should know</h2>
-          <ul>
+        <div className="info-container flex-1 p-4 bg-gray-200 rounded ml-5">
+          <h3 className="text-lg font-semibold">
+            Here&apos;s what you should know
+          </h3>
+          <ul className="my-3">
             <li>Make sure your pet is on a leash.</li>
             <li>Bring waste disposal bags.</li>
             <li>Keep your pet hydrated.</li>
             <li>Let us know about any behavior concerns.</li>
           </ul>
-          <h2>Are you ready? Book Pet Walking</h2>
-          <label htmlFor="calendar">Select a date:</label>
-          <input type="date" id="calendar" name="calendar" />
-          <label htmlFor="time">Select a time:</label>
-          <input type="time" id="time" name="time" />
-          <button className="book-button">Book Now</button>
+          <h3 className="text-lg font-semibold">
+            Are you ready? Book Pet Walking
+          </h3>
+          <label htmlFor="calendar" className="block mt-3">
+            Select a date:
+          </label>
+          <input
+            type="date"
+            id="calendar"
+            name="calendar"
+            className="w-full py-2 px-3 border rounded mt-1"
+          />
+          <label htmlFor="time" className="block mt-3">
+            Select a time:
+          </label>
+          <input
+            type="time"
+            id="time"
+            name="time"
+            className="w-full py-2 px-3 border rounded mt-1"
+          />
+          <p className="text-xl font-semibold text-gray-600 mt-3">Price: $10</p>
+          <button
+            onClick={handleAddToCart}
+            className="flex items-center justify-center mt-4 px-6 py-2 bg-dark text-white rounded cursor-pointer"
+          >
+            <FaShoppingCart className="mr-2" />
+            Book Now
+          </button>
         </div>
       </div>
-      <style jsx>{`
-        .pet-walking-container {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 40px;
-        }
-
-        .image-container {
-          flex: 1;
-        }
-
-        .info-container {
-          flex: 1;
-          padding: 20px;
-          background-color: #f0f0f0;
-          border-radius: 8px;
-          margin-left:20px
-        }
-
-        .info-container h2 {
-          font-size: 1.5rem;
-          
-        }
-
-        ul {
-          margin: 10px 0;
-        }
-
-        label {
-          display: block;
-          margin-top: 10px;
-        }
-
-        input {
-          width: 100%;
-          padding: 8px;
-          margin-top: 5px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-        }
-
-        .book-button {
-          display: block;
-          margin-top: 20px;
-          padding: 10px 20px;
-          background-color: #007bff;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-      `}</style>
-    </RootLayout>
+    </>
   );
 };
 
