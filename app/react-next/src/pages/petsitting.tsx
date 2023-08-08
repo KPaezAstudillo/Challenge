@@ -70,7 +70,7 @@ const PetSitting = () => {
           <div className="flex items-center">
             <input
               type="number"
-              id="time"
+              id="extension"
               name="time"
               min="1"
               className="py-2 px-3 border rounded mt-1 mr-2"
@@ -78,7 +78,7 @@ const PetSitting = () => {
             <span className="text-gray-600">Hours</span>
           </div>
           <p className="text-lg font-semibold text-gray-600 mt-3">
-            Price: $6/hour{" "}
+            Price: $6/hour
           </p>
           <button
             onClick={handleAddToCart}

@@ -2,27 +2,23 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "./auth/auth";
 import styles from "../styles/banner.module.css";
+import { useDispatch } from "react-redux";
+import { setUserEmail } from "@/app/store/nextSlice";
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
   const { login } = useAuth();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
-    if (isValidEmail(email)) {
-      if (login(email)) {
-        router.push("/main");
-      } else {
-        alert("Authentication failed");
-      }
+    if (login(email)) {
+      dispatch(setUserEmail(email));
+      router.push("/main");
     } else {
       alert("Invalid email format");
     }
-  };
-
-  const isValidEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
   };
 
   return (

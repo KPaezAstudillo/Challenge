@@ -4,7 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface NextState {
   serviceData: Array<{ serviceName: string; price: number }>;
   allProducts: any[];
-  userInfo: any | null;
+  userInfo: string | null;
 }
 
 //payload type for the addToCart action
@@ -26,8 +26,14 @@ export const nextSlice = createSlice({
     addToCart: (state, action: PayloadAction<AddToCartPayload>) => {
       state.serviceData.push(action.payload);
     },
+    setServiceData: (state, action: PayloadAction<Array<{ serviceName: string; price: number }>>) => {
+      state.serviceData = action.payload;
+    },
+    setUserEmail: (state, action: PayloadAction<string | null>) => {
+      state.userInfo = action.payload;
+    },
   },
 });
 
-export const { addToCart } = nextSlice.actions;
+export const { addToCart, setUserEmail, setServiceData } = nextSlice.actions;
 export default nextSlice.reducer;
